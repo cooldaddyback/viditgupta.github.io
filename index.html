@@ -773,6 +773,16 @@
                 grid-template-columns: 1fr;
             }
         }
+        .blog-full {
+    display: none;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.blog-full p {
+    margin-bottom: 1rem;
+}
     </style>
 </head>
 <body>
@@ -820,7 +830,7 @@
                     </div>
                     <div class="stat">
                         <span class="stat-number">5+</span>
-                        <span class="stat-label">Technologies</span>
+                        <span class="stat-label">Hackathons</span>
                     </div>
                 </div>
             </div>
@@ -913,117 +923,157 @@
         </div>
     </section>
 
-    <section id="blog" class="blog">
-        <div class="container">
-            <h2 class="section-title fade-in">Thoughts & Reflections</h2>
-            <p style="color: var(--text-secondary); max-width: 700px; margin-bottom: 3rem;" class="fade-in">
-                Beyond the code and projects, here are some thoughts on my journey through tech, university life, and everything in between.
-            </p>
-            <div class="blog-grid">
-                <div class="blog-card fade-in">
-                    <div class="blog-meta">
-                        <span class="blog-date">January 2026</span>
-                        <span class="blog-read-time">5 min read</span>
-                    </div>
-                    <h3>First Year at Waterloo: What They Don't Tell You</h3>
-                    <p class="blog-excerpt">
-                        Everyone talks about co-op and the rigorous curriculum, but no one really prepares you for the 2am debugging sessions in DC library or the genuine friendships formed over shared struggle. Here's what my first semester at UWaterloo actually taught me beyond algorithms and data structures.
+   <section id="blog" class="blog">
+    <div class="container">
+        <h2 class="section-title fade-in">Thoughts & Reflections</h2>
+        <p style="color: var(--text-secondary); max-width: 700px; margin-bottom: 3rem;" class="fade-in">
+            Writing helps me slow down. These are honest reflections on growth, uncertainty, balance, and becoming more human along the way.
+        </p>
+
+        <div class="blog-grid">
+
+            <!-- Blog 1 -->
+            <div class="blog-card fade-in">
+                <div class="blog-meta">
+                    <span class="blog-read-time">4 min read</span>
+                </div>
+                <h3>The Quiet Moments That Shape You</h3>
+
+                <p class="blog-excerpt">
+                    Most growth doesn’t happen when life is loud. It happens in quiet moments—when no one is watching and you choose to keep going anyway.
+                </p>
+
+                <div class="blog-full">
+                    <p>
+                        I used to think progress had to feel dramatic. Big wins. Clear milestones. Constant validation.
+                        But the truth is, the moments that changed me most were silent—late nights thinking, walking alone,
+                        sitting with discomfort instead of escaping it.
                     </p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">university life</span>
-                        <span class="blog-tag">personal growth</span>
-                        <span class="blog-tag">lessons learned</span>
-                    </div>
-                    <a href="#" class="read-more">Read more →</a>
+                    <p>
+                        These moments don’t look impressive from the outside, but they slowly build resilience.
+                        They teach patience, self-trust, and the ability to keep moving without applause.
+                    </p>
+                    <p>
+                        Over time, I realized that who you become in private matters far more than how you appear in public.
+                    </p>
                 </div>
 
-                <div class="blog-card fade-in">
-                    <div class="blog-meta">
-                        <span class="blog-date">December 2025</span>
-                        <span class="blog-read-time">7 min read</span>
-                    </div>
-                    <h3>From High School Leader to Corporate Intern</h3>
-                    <p class="blog-excerpt">
-                        Transitioning from being Head of School Student Union to a FinTech intern at a Fortune 500 company was humbling. The leadership skills I thought I had mastered? They were just the beginning. Here's how I learned to lead differently in a professional environment.
-                    </p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">career</span>
-                        <span class="blog-tag">leadership</span>
-                        <span class="blog-tag">internship tips</span>
-                    </div>
-                    <a href="#" class="read-more">Read more →</a>
-                </div>
-
-                <div class="blog-card fade-in">
-                    <div class="blog-meta">
-                        <span class="blog-date">November 2025</span>
-                        <span class="blog-read-time">6 min read</span>
-                    </div>
-                    <h3>Building in Public: Why I Started Sharing My Code</h3>
-                    <p class="blog-excerpt">
-                        I used to be terrified of pushing my projects to GitHub. What if my code wasn't clean enough? What if someone judged my implementation? Turns out, sharing my work was the best decision I made. Here's why imperfect action beats perfect inaction.
-                    </p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">tech</span>
-                        <span class="blog-tag">learning in public</span>
-                        <span class="blog-tag">mindset</span>
-                    </div>
-                    <a href="#" class="read-more">Read more →</a>
-                </div>
-
-                <div class="blog-card fade-in">
-                    <div class="blog-meta">
-                        <span class="blog-date">October 2025</span>
-                        <span class="blog-read-time">4 min read</span>
-                    </div>
-                    <h3>Finding Balance: When Grinding Isn't Enough</h3>
-                    <p class="blog-excerpt">
-                        The tech industry loves to glorify the hustle. But after burning out twice in my first year, I learned that sustainable success requires more than just grinding 16-hour days. Here's how I found my rhythm between academics, internships, and actually living.
-                    </p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">mental health</span>
-                        <span class="blog-tag">work-life balance</span>
-                        <span class="blog-tag">self-care</span>
-                    </div>
-                    <a href="#" class="read-more">Read more →</a>
-                </div>
-
-                <div class="blog-card fade-in">
-                    <div class="blog-meta">
-                        <span class="blog-date">September 2025</span>
-                        <span class="blog-read-time">5 min read</span>
-                    </div>
-                    <h3>The CMH Club Story: Building Community from Scratch</h3>
-                    <p class="blog-excerpt">
-                        Starting the CMH Club taught me more about people than any computer science course ever could. From recruiting the first members to organizing our biggest events, here's the messy, beautiful journey of building something that matters to people.
-                    </p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">community</span>
-                        <span class="blog-tag">entrepreneurship</span>
-                        <span class="blog-tag">impact</span>
-                    </div>
-                    <a href="#" class="read-more">Read more →</a>
-                </div>
-
-                <div class="blog-card fade-in">
-                    <div class="blog-meta">
-                        <span class="blog-date">August 2025</span>
-                        <span class="blog-read-time">8 min read</span>
-                    </div>
-                    <h3>Blockchain, AI, and the Questions That Keep Me Up</h3>
-                    <p class="blog-excerpt">
-                        Working at Token Z Labs exposed me to the intersection of blockchain and AI—two technologies that promise to reshape everything. But with great power comes great responsibility, and some nights I wonder: are we building the future we actually want? Some thoughts on ethics, innovation, and staying human in tech.
-                    </p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">technology</span>
-                        <span class="blog-tag">ethics</span>
-                        <span class="blog-tag">future</span>
-                    </div>
-                    <a href="#" class="read-more">Read more →</a>
-                </div>
+                <a class="read-more">Read more →</a>
             </div>
+
+            <!-- Blog 2 -->
+            <div class="blog-card fade-in">
+                <div class="blog-meta">
+                    <span class="blog-read-time">5 min read</span>
+                </div>
+                <h3>Being Lost Is Not Falling Behind</h3>
+
+                <p class="blog-excerpt">
+                    Feeling lost used to scare me. Now I see it as a sign that I’m growing out of old versions of myself.
+                </p>
+
+                <div class="blog-full">
+                    <p>
+                        There’s pressure to always know what’s next. A plan. A direction. A purpose you can explain in one sentence.
+                        But some phases of life are meant to be unclear.
+                    </p>
+                    <p>
+                        Being lost often means your old goals no longer fit—but your new ones haven’t revealed themselves yet.
+                        That space feels uncomfortable, but it’s honest.
+                    </p>
+                    <p>
+                        I’ve learned that clarity comes from movement, not certainty. You don’t find yourself by standing still.
+                    </p>
+                </div>
+
+                <a class="read-more">Read more →</a>
+            </div>
+
+            <!-- Blog 3 -->
+            <div class="blog-card fade-in">
+                <div class="blog-meta">
+                    <span class="blog-read-time">4 min read</span>
+                </div>
+                <h3>When Productivity Became My Identity</h3>
+
+                <p class="blog-excerpt">
+                    For a long time, being busy felt like proof that I mattered. Rest felt like something I had to earn.
+                </p>
+
+                <div class="blog-full">
+                    <p>
+                        I measured my worth by output. If I wasn’t productive, I felt behind. If I rested, I felt guilty.
+                        Eventually, everything started to feel heavy—even things I once loved.
+                    </p>
+                    <p>
+                        Burnout doesn’t arrive loudly. It creeps in quietly, disguised as discipline.
+                    </p>
+                    <p>
+                        Learning to rest without guilt was one of the hardest—and most necessary—lessons I’ve learned.
+                    </p>
+                </div>
+
+                <a class="read-more">Read more →</a>
+            </div>
+
+            <!-- Blog 4 -->
+            <div class="blog-card fade-in">
+                <div class="blog-meta">
+                    <span class="blog-read-time">3 min read</span>
+                </div>
+                <h3>Friendships Built Between the Lines</h3>
+
+                <p class="blog-excerpt">
+                    The most meaningful connections in my life weren’t planned. They formed in ordinary, unnoticed moments.
+                </p>
+
+                <div class="blog-full">
+                    <p>
+                        Real friendships didn’t come from networking or convenience. They came from shared silence,
+                        late conversations, mutual exhaustion, and honesty without performance.
+                    </p>
+                    <p>
+                        I’ve learned that presence matters more than perfection. Being there—consistently—is what builds trust.
+                    </p>
+                    <p>
+                        The strongest bonds are often formed when no one is trying to impress anyone.
+                    </p>
+                </div>
+
+                <a class="read-more">Read more →</a>
+            </div>
+
+            <!-- Blog 5 -->
+            <div class="blog-card fade-in">
+                <div class="blog-meta">
+                    <span class="blog-read-time">5 min read</span>
+                </div>
+                <h3>Still Figuring It Out — Honestly</h3>
+
+                <p class="blog-excerpt">
+                    I don’t have everything figured out. And I’ve stopped pretending that I should.
+                </p>
+
+                <div class="blog-full">
+                    <p>
+                        Life doesn’t move in straight lines. It loops, pauses, and changes direction without warning.
+                        Expecting constant clarity only creates pressure.
+                    </p>
+                    <p>
+                        Some days, the best you can do is take the next honest step—even if the full picture isn’t clear yet.
+                    </p>
+                    <p>
+                        If you’re still figuring things out, you’re not behind. You’re human.
+                    </p>
+                </div>
+
+                <a class="read-more">Read more →</a>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
+
 
     <section id="skills" class="skills-section">
         <div class="container">
@@ -1171,6 +1221,17 @@
                 cursorTrail.shift();
             }
         });
+       
+document.querySelectorAll('.read-more').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const full = btn.previousElementSibling;
+        const expanded = full.style.display === 'block';
+
+        full.style.display = expanded ? 'none' : 'block';
+        btn.textContent = expanded ? 'Read more →' : 'Read less ←';
+    });
+});
+
     </script>
 </body>
 </html>give me the fixed code incorporating this
