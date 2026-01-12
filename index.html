@@ -1,1176 +1,277 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vidit Gupta - Software Engineer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-color: #0a0a0a;
-            --text-primary: #e5e5e5;
-            --text-secondary: #888;
-            --accent: #00ff88;
-            --accent-hover: #00cc6a;
-            --card-bg: #111;
-        }
-
-        [data-theme="light"] {
-            --bg-color: #ffffff;
-            --text-primary: #1a1a1a;
-            --text-secondary: #666;
-            --accent: #00b359;
-            --accent-hover: #009947;
-            --card-bg: #f5f5f5;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            background: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.03;
-            transition: opacity 0.3s ease;
-        }
-
-        [data-theme="light"] .bg-animation {
-            opacity: 0.02;
-        }
-
-        .bg-grid {
-            background-image: 
-                linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            width: 100%;
-            height: 100%;
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
-            transition: all 0.3s;
-        }
-
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text-primary);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            font-size: 1.2rem;
-        }
-
-        [data-theme="light"] .theme-toggle {
-            border-color: rgba(0, 0, 0, 0.2);
-        }
-
-        .theme-toggle:hover {
-            border-color: var(--accent);
-            transform: rotate(180deg);
-        }
-
-        .logo {
-            font-size: 1.2rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            position: relative;
-        }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s;
-        }
-
-        .logo:hover::after {
-            width: 100%;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-            position: relative;
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .nav-links a:hover::before {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
-            position: relative;
-        }
-
-        .hero-content {
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        .hero-label {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(0, 255, 136, 0.1);
-            border: 1px solid rgba(0, 255, 136, 0.3);
-            border-radius: 20px;
-            color: var(--accent);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            letter-spacing: -2px;
-            background: linear-gradient(135deg, #e5e5e5 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero .subtitle {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .hero p {
-            max-width: 600px;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            background: var(--accent);
-            color: var(--bg-color);
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.5s, height 0.5s;
-        }
-
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-            background: var(--accent-hover);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--accent);
-            border: 1px solid var(--accent);
-        }
-
-        .btn-secondary:hover {
-            background: var(--accent);
-            color: var(--bg-color);
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent);
-            display: block;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-
-        /* Experience Section */
-        .experience {
-            padding: 8rem 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            font-weight: 600;
-            letter-spacing: -1px;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            padding-left: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.5rem;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--accent);
-            border: 3px solid var(--bg-color);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-        }
-
-        .timeline-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .timeline-header h3 {
-            font-size: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .timeline-company {
-            color: var(--accent);
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
-
-        .timeline-date {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            padding: 0.3rem 0.8rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 4px;
-        }
-
-        .timeline-description {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .timeline-item ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .timeline-item li {
-            color: var(--text-secondary);
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .timeline-item li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 8rem 0;
-            background: var(--bg-color);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 255, 136, 0.1);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
-        }
-
-        .project-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .project-card p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .project-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-
-        .tag {
-            padding: 0.3rem 0.8rem;
-            background: rgba(0, 255, 136, 0.1);
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: var(--accent);
-        }
-
-        .project-link {
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: gap 0.3s;
-            font-weight: 500;
-        }
-
-        .project-link:hover {
-            gap: 1rem;
-        }
-
-        /* Blog Section */
-        .blog {
-            padding: 8rem 0;
-            background: var(--bg-color);
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .blog-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 255, 136, 0.1);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .blog-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s;
-        }
-
-        .blog-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .blog-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
-        }
-
-        .blog-meta {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .blog-date {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-
-        .blog-read-time {
-            color: var(--accent);
-            font-size: 0.85rem;
-            padding: 0.2rem 0.6rem;
-            background: rgba(0, 255, 136, 0.1);
-            border-radius: 4px;
-        }
-
-        .blog-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            line-height: 1.3;
-        }
-
-        .blog-excerpt {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            flex-grow: 1;
-        }
-
-        .blog-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-
-        .blog-tag {
-            padding: 0.3rem 0.8rem;
-            background: rgba(0, 255, 136, 0.05);
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-
-        .read-more {
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 0.95rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: gap 0.3s;
-            font-weight: 500;
-            align-self: flex-start;
-        }
-
-        .read-more:hover {
-            gap: 1rem;
-        }
-
-        /* Skills Section */
-        .skills-section {
-            padding: 8rem 0;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .skill-category {
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 255, 136, 0.1);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-
-        .skill-category:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .skill-category h3 {
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-
-        .skill-tag {
-            padding: 0.5rem 1rem;
-            background: rgba(0, 255, 136, 0.05);
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            transition: all 0.3s;
-        }
-
-        .skill-tag:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 8rem 0;
-        }
-
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-        }
-
-        .contact-link:hover {
-            color: var(--accent);
-            background: rgba(0, 255, 136, 0.1);
-        }
-
-        /* Footer */
-        footer {
-            padding: 2rem 0;
-            text-align: center;
-            color: var(--text-secondary);
-            border-top: 1px solid rgba(0, 255, 136, 0.1);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .timeline {
-                padding-left: 1rem;
-            }
-
-            .timeline-item {
-                padding-left: 1.5rem;
-            }
-
-            .projects-grid, .blog-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                gap: 0.8rem;
-                font-size: 0.85rem;
-            }
-
-            .nav-right {
-                gap: 1rem;
-            }
-
-            .theme-toggle {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-stats {
-                gap: 2rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vidit Gupta - Software Engineer</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+--bg:#0a0a0a;
+--text:#e5e5e5;
+--muted:#888;
+--accent:#00ff88;
+--accent-hover:#00cc6a;
+--card:#111;
+}
+
+[data-theme="light"]{
+--bg:#ffffff;
+--text:#1a1a1a;
+--muted:#666;
+--accent:#00b359;
+--accent-hover:#009947;
+--card:#f5f5f5;
+}
+
+body{
+font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+transition:.3s;
+}
+
+.container{max-width:1200px;margin:auto;padding:0 2rem}
+
+/* NAV */
+nav{
+position:fixed;
+top:0;width:100%;
+background:rgba(10,10,10,.85);
+backdrop-filter:blur(10px);
+border-bottom:1px solid rgba(0,255,136,.1);
+z-index:1000;
+}
+nav .container{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:1.3rem 0;
+}
+.nav-links{list-style:none;display:flex;gap:2rem}
+.nav-links a{color:var(--muted);text-decoration:none}
+.nav-links a:hover{color:var(--accent)}
+.theme-toggle{
+width:40px;height:40px;border-radius:50%;
+background:none;border:1px solid rgba(255,255,255,.2);
+color:var(--text);cursor:pointer
+}
+
+/* HERO */
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+padding-top:80px
+}
+.hero h1{
+font-size:clamp(2.5rem,6vw,5rem);
+background:linear-gradient(135deg,#e5e5e5,var(--accent));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:1rem
+}
+.subtitle{color:var(--muted);font-size:1.4rem}
+.btn{
+padding:1rem 2rem;
+background:var(--accent);
+color:var(--bg);
+border-radius:6px;
+text-decoration:none;
+display:inline-block;
+margin-right:1rem;
+transition:.3s
+}
+.btn:hover{background:var(--accent-hover)}
+
+/* SECTIONS */
+section{padding:8rem 0}
+.section-title{font-size:2.5rem;margin-bottom:2rem}
+
+/* BLOG */
+.blog-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:2rem
+}
+.blog-card{
+background:var(--card);
+border-radius:12px;
+padding:2rem;
+border:1px solid rgba(0,255,136,.1);
+transition:.3s;
+display:flex;
+flex-direction:column
+}
+.blog-card:hover{transform:translateY(-6px)}
+.blog-read-time{
+color:var(--accent);
+font-size:.85rem;
+margin-bottom:.6rem
+}
+.blog-excerpt{color:var(--muted);margin-bottom:1rem}
+.blog-full{
+display:none;
+color:var(--muted);
+margin-bottom:1rem
+}
+.read-more{
+color:var(--accent);
+cursor:pointer;
+font-weight:500;
+align-self:flex-start
+}
+
+/* FOOTER */
+footer{
+padding:2rem 0;
+border-top:1px solid rgba(0,255,136,.1);
+text-align:center;
+color:var(--muted)
+}
+
+.fade-in{opacity:0;transform:translateY(30px);transition:.8s}
+.fade-in.visible{opacity:1;transform:none}
+
+@media(max-width:768px){
+.nav-links{gap:1rem}
+}
+</style>
 </head>
+
 <body>
-    <div class="bg-animation">
-        <div class="bg-grid"></div>
-    </div>
 
-    <nav>
-        <div class="container">
-            <div class="logo">Vidit Gupta</div>
-            <div class="nav-right">
-                <ul class="nav-links">
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <span class="theme-icon">☀</span>
-                </button>
-            </div>
-        </div>
-    </nav>
+<nav>
+<div class="container">
+<div class="logo">Vidit Gupta</div>
+<ul class="nav-links">
+<li><a href="#blog">Blog</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+<button class="theme-toggle" id="themeToggle">☀</button>
+</div>
+</nav>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-label">Available for Internships</div>
-                <h1>I Build Software That Ships</h1>
-                <div class="subtitle">Building scalable solutions at the intersection of finance and technology</div>
-                <p>Computer Science student at University of Waterloo with experience in full-stack development, blockchain systems, and financial data engineering. Passionate about creating efficient, user-centric applications.</p>
-                <div class="cta-buttons">
-                    <a href="#projects" class="btn">View My Work</a>
-                    <a href="mailto:v92gupta@uwaterloo.ca" class="btn btn-secondary">Get in Touch</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">2+</span>
-                        <span class="stat-label">Internships</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">10+</span>
-                        <span class="stat-label">Projects Built</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">5+</span>
-                        <span class="stat-label">Technologies</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="hero">
+<div class="container fade-in">
+<h1>I Build Software That Ships</h1>
+<p class="subtitle">But I write to understand life.</p>
+<a href="#blog" class="btn">Read My Thoughts</a>
+</div>
+</section>
 
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title fade-in">Work Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item fade-in">
-                    <div class="timeline-header">
-                        <div>
-                            <div class="timeline-company">Reckitt Benckiser (Canada) Inc</div>
-                            <h3>FinTech Intern</h3>
-                        </div>
-                        <span class="timeline-date">May 2025 – Aug 2025</span>
-                    </div>
-                    <p class="timeline-description">Global Fortune 500 company behind brands like Lysol, Dettol, Finish and Durex</p>
-                    <ul>
-                        <li>Worked as an integrated member of Finance, FP&A and IT teams, bridging data engineering with business needs</li>
-                        <li>Created data validation workflows with Python, SQL, Excel macros, and Power Query to improve report accuracy</li>
-                        <li>Collaborated with Finance and IT stakeholders on Integrated Business Planning (IBP) alignment</li>
-                        <li>Utilized enterprise systems such as SAP, Hyperion, and Power BI for data transformation and visualization</li>
-                    </ul>
-                </div>
+<section id="blog">
+<div class="container">
+<h2 class="section-title fade-in">Thoughts & Reflections</h2>
 
-                <div class="timeline-item fade-in">
-                    <div class="timeline-header">
-                        <div>
-                            <div class="timeline-company">Token Z Labs</div>
-                            <h3>Software Engineer Intern</h3>
-                        </div>
-                        <span class="timeline-date">Dec 2024 – Apr 2025</span>
-                    </div>
-                    <p class="timeline-description">Blockchain R&D startup building privacy-preserving digital assets and cross-chain systems</p>
-                    <ul>
-                        <li>Worked as part of the engineering team on an MPC blockchain wallet and smart contracts, ensuring secure key handling and transaction privacy</li>
-                        <li>Led project management and coordination across teams, ensuring timely delivery and technical alignment</li>
-                        <li>Prototyped and tested new blockchain–AI features with iterative user feedback to enhance usability and reliability</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="blog-grid">
 
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title fade-in">Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card fade-in">
-                    <h3>Insightify</h3>
-                    <p>Interactive financial forecasting dashboard that predicts quarterly revenue and expenses using time-series models. Features automated ETL pipelines and real-time data visualization.</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">SQL</span>
-                        <span class="tag">scikit-learn</span>
-                        <span class="tag">Streamlit</span>
-                        <span class="tag">Plotly</span>
-                    </div>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
+<div class="blog-card fade-in">
+<span class="blog-read-time">4 min read</span>
+<h3>The Quiet Moments That Shape You</h3>
+<p class="blog-excerpt">Most growth happens when no one is watching.</p>
+<div class="blog-full">
+<p>Progress rarely announces itself. It happens late at night, during doubt, during silence.</p>
+<p>Those moments slowly teach resilience, patience, and self-trust.</p>
+<p>Who you become in private matters far more than how you appear in public.</p>
+</div>
+<span class="read-more">Read more →</span>
+</div>
 
-                <div class="project-card fade-in">
-                    <h3>TaskFlow</h3>
-                    <p>Full-stack task management platform with secure JWT authentication and responsive UI. Built with modern MERN stack and deployed on cloud infrastructure for high availability.</p>
-                    <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">Express</span>
-                        <span class="tag">MongoDB</span>
-                        <span class="tag">JWT</span>
-                    </div>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
+<div class="blog-card fade-in">
+<span class="blog-read-time">5 min read</span>
+<h3>Being Lost Is Not Falling Behind</h3>
+<p class="blog-excerpt">Sometimes confusion is proof that you're changing.</p>
+<div class="blog-full">
+<p>Being lost often means old goals no longer fit.</p>
+<p>Clarity comes from movement, not certainty.</p>
+<p>You don’t find yourself by standing still.</p>
+</div>
+<span class="read-more">Read more →</span>
+</div>
 
-                <div class="project-card fade-in">
-                    <h3>AutoPost</h3>
-                    <p>Automated social media scheduler with content timing optimization, analytics visualization, and real-time API health monitoring. Features async endpoints and background task processing.</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">FastAPI</span>
-                        <span class="tag">React</span>
-                        <span class="tag">SQLite</span>
-                        <span class="tag">APScheduler</span>
-                    </div>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="blog-card fade-in">
+<span class="blog-read-time">4 min read</span>
+<h3>When Productivity Became My Identity</h3>
+<p class="blog-excerpt">Rest once felt like something I had to earn.</p>
+<div class="blog-full">
+<p>Busyness became validation.</p>
+<p>Burnout arrives quietly, disguised as discipline.</p>
+<p>Learning to rest was a necessary rebellion.</p>
+</div>
+<span class="read-more">Read more →</span>
+</div>
 
-    <section id="blog" class="blog">
-        <div class="container">
-            <h2 class="section-title fade-in">Thoughts & Reflections</h2>
-            <p style="color: var(--text-secondary); max-width: 700px; margin-bottom: 3rem;" class="fade-in">
-                Beyond the code and projects, here are some thoughts on my journey through tech, university life, and everything in between.
-            </p>
-            <div class="blog-grid">
-                <div class="blog-card fade-in">
-                    <div class="blog-meta">
-                        <span class="blog-date">January 2026</span>
-                        <span class="blog-read-time">5 min read</span>
-                    </div>
-                    <h3>First Year at Waterloo: What They Don't Tell You</h3>
-                    <p class="blog-excerpt">
-                        Everyone talks about co-op and the rigorous curriculum, but no one really prepares you for the 2am debugging sessions in DC library or the genuine friendships formed over shared struggle. Here's what my first semester at UWaterloo actually taught me beyond algorithms and data structures.
-                    </p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">university life</span>
-                        <span class="blog-tag">personal growth</span>
-                        <span class="blog-tag">lessons learned</span>
-                    </div>
-                    <a href="#" class="read-more">Read more →</a>
-                </div>
+<div class="blog-card fade-in">
+<span class="blog-read-time">3 min read</span>
+<h3>Friendships Built Between the Lines</h3>
+<p class="blog-excerpt">The best connections are unplanned.</p>
+<div class="blog-full">
+<p>Real friendships form in silence and honesty.</p>
+<p>Presence matters more than perfection.</p>
+<p>Consistency builds trust.</p>
+</div>
+<span class="read-more">Read more →</span>
+</div>
 
-                <div class="blog-card fade-in">
-                    <div class="blog-meta">
-                        <span class="blog-date">December 2025</span>
-                        <span class="blog-read-time">7 min read</span>
-                    </div>
-                    <h3>From High School Leader to Corporate Intern</h3>
-                    <p class="blog-excerpt">
-                        Transitioning from being Head of School Student Union to a FinTech intern at a Fortune 500 company was humbling. The leadership skills I thought I had mastered? They were just the beginning. Here's how I learned to lead differently in a professional environment.
-                    </p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">career</span>
-                        <span class="blog-tag">leadership</span>
-                        <span class="blog-tag">internship tips</span>
-                    </div>
-                    <a href="#" class="read-more">Read more →</a>
-                </div>
+<div class="blog-card fade-in">
+<span class="blog-read-time">5 min read</span>
+<h3>Still Figuring It Out</h3>
+<p class="blog-excerpt">And finally okay with that.</p>
+<div class="blog-full">
+<p>Life moves in loops, not lines.</p>
+<p>The next honest step is enough.</p>
+<p>If you're unsure, you're human.</p>
+</div>
+<span class="read-more">Read more →</span>
+</div>
 
-                <div class="blog-card fade-in">
-                    <div class="blog-meta">
-                        <span class="blog-date">November 2025</span>
-                        <span class="blog-read-time">6 min read</span>
-                    </div>
-                    <h3>Building in Public: Why I Started Sharing My Code</h3>
-                    <p class="blog-excerpt">
-                        I used to be terrified of pushing my projects to GitHub. What if my code wasn't clean enough? What if someone judged my implementation? Turns out, sharing my work was the best decision I made. Here's why imperfect action beats perfect inaction.
-                    </p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">tech</span>
-                        <span class="blog-tag">learning in public</span>
-                        <span class="blog-tag">mindset</span>
-                    </div>
-                    <a href="#" class="read-more">Read more →</a>
-                </div>
+</div>
+</div>
+</section>
 
-                <div class="blog-card fade-in">
-                    <div class="blog-meta">
-                        <span class="blog-date">October 2025</span>
-                        <span class="blog-read-time">4 min read</span>
-                    </div>
-                    <h3>Finding Balance: When Grinding Isn't Enough</h3>
-                    <p class="blog-excerpt">
-                        The tech industry loves to glorify the hustle. But after burning out twice in my first year, I learned that sustainable success requires more than just grinding 16-hour days. Here's how I found my rhythm between academics, internships, and actually living.
-                    </p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">mental health</span>
-                        <span class="blog-tag">work-life balance</span>
-                        <span class="blog-tag">self-care</span>
-                    </div>
-                    <a href="#" class="read-more">Read more →</a>
-                </div>
+<section id="contact">
+<div class="container fade-in" style="text-align:center">
+<h2 class="section-title">Let’s Connect</h2>
+<p style="color:var(--muted)">Always open to conversations.</p>
+<a href="mailto:v92gupta@uwaterloo.ca" class="btn">Email Me</a>
+</div>
+</section>
 
-                <div class="blog-card fade-in">
-                    <div class="blog-meta">
-                        <span class="blog-date">September 2025</span>
-                        <span class="blog-read-time">5 min read</span>
-                    </div>
-                    <h3>The CMH Club Story: Building Community from Scratch</h3>
-                    <p class="blog-excerpt">
-                        Starting the CMH Club taught me more about people than any computer science course ever could. From recruiting the first members to organizing our biggest events, here's the messy, beautiful journey of building something that matters to people.
-                    </p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">community</span>
-                        <span class="blog-tag">entrepreneurship</span>
-                        <span class="blog-tag">impact</span>
-                    </div>
-                    <a href="#" class="read-more">Read more →</a>
-                </div>
+<footer>
+<p>© 2026 Vidit Gupta</p>
+</footer>
 
-                <div class="blog-card fade-in">
-                    <div class="blog-meta">
-                        <span class="blog-date">August 2025</span>
-                        <span class="blog-read-time">8 min read</span>
-                    </div>
-                    <h3>Blockchain, AI, and the Questions That Keep Me Up</h3>
-                    <p class="blog-excerpt">
-                        Working at Token Z Labs exposed me to the intersection of blockchain and AI—two technologies that promise to reshape everything. But with great power comes great responsibility, and some nights I wonder: are we building the future we actually want? Some thoughts on ethics, innovation, and staying human in tech.
-                    </p>
-                    <div class="blog-tags">
-                        <span class="blog-tag">technology</span>
-                        <span class="blog-tag">ethics</span>
-                        <span class="blog-tag">future</span>
-                    </div>
-                    <a href="#" class="read-more">Read more →</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<script>
+/* THEME */
+const toggle=document.getElementById("themeToggle");
+const html=document.documentElement;
+toggle.onclick=()=>{
+const t=html.getAttribute("data-theme")==="dark"?"light":"dark";
+html.setAttribute("data-theme",t);
+toggle.textContent=t==="dark"?"☀":"☾";
+};
 
-    <section id="skills" class="skills-section">
-        <div class="container">
-            <h2 class="section-title fade-in">Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-category fade-in">
-                    <h3>Languages & Frameworks</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">React.js</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Express.js</span>
-                        <span class="skill-tag">MongoDB</span>
-                    </div>
-                </div>
+/* READ MORE */
+document.querySelectorAll(".read-more").forEach(btn=>{
+btn.onclick=()=>{
+const full=btn.previousElementSibling;
+const open=full.style.display==="block";
+full.style.display=open?"none":"block";
+btn.textContent=open?"Read more →":"Read less ←";
+};
+});
 
-                <div class="skill-category fade-in">
-                    <h3>Data & Analytics</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">Tableau</span>
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">SAP</span>
-                        <span class="skill-tag">ETL Pipelines</span>
-                        <span class="skill-tag">Data Visualization</span>
-                    </div>
-                </div>
+/* FADE IN */
+const obs=new IntersectionObserver(e=>{
+e.forEach(i=>i.isIntersecting&&i.target.classList.add("visible"))
+},{threshold:.1});
+document.querySelectorAll(".fade-in").forEach(el=>obs.observe(el));
+</script>
 
-                <div class="skill-category fade-in">
-                    <h3>Professional Skills</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Team Collaboration</span>
-                        <span class="skill-tag">Communication</span>
-                        <span class="skill-tag">Problem-Solving</span>
-                        <span class="skill-tag">Leadership</span>
-                        <span class="skill-tag">Project Management</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-content fade-in">
-                <h2 class="section-title">Let's Connect</h2>
-                <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem;">I'm always open to discussing new opportunities, innovative projects, or simply connecting with fellow tech enthusiasts. Currently seeking Summer 2026 internships!</p>
-                <div class="contact-links">
-                    <a href="mailto:v92gupta@uwaterloo.ca" class="contact-link">Email</a>
-                    <a href="https://linkedin.com/in/viditgupta6" target="_blank" class="contact-link">LinkedIn</a>
-                    <a href="tel:+12268992764" class="contact-link">Phone</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Vidit Gupta. Built with passion and code.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.querySelector('.theme-icon');
-        const html = document.documentElement;
-
-        // Check for saved theme preference or default to 'dark'
-        const currentTheme = localStorage.getItem('theme') || 'dark';
-        html.setAttribute('data-theme', currentTheme);
-        updateThemeIcon(currentTheme);
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
-        });
-
-        function updateThemeIcon(theme) {
-            themeIcon.textContent = theme === 'dark' ? '☀' : '☾';
-        }
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Enhanced navbar background on scroll
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 100) {
-                nav.style.background = 'rgba(10, 10, 10, 0.95)';
-                nav.style.borderBottom = '1px solid rgba(0, 255, 136, 0.3)';
-            } else {
-                nav.style.background = 'rgba(10, 10, 10, 0.8)';
-                nav.style.borderBottom = '1px solid rgba(0, 255, 136, 0.1)';
-            }
-            
-            lastScroll = currentScroll;
-        });
-
-        // Cursor trail effect
-        let cursorTrail = [];
-        const trailLength = 20;
-
-        document.addEventListener('mousemove', (e) => {
-            cursorTrail.push({x: e.clientX, y: e.clientY});
-            if (cursorTrail.length > trailLength) {
-                cursorTrail.shift();
-            }
-        });
-    </script>
 </body>
 </html>
+
