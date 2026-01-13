@@ -69,6 +69,26 @@
             height: 100%;
             animation: gridMove 20s linear infinite;
         }
+        .now-section {
+    padding: 6rem 0;
+    background: var(--bg-secondary);
+}
+
+.now-content {
+    max-width: 700px;
+    margin: auto;
+    color: var(--text-secondary);
+}
+
+.now-content ul {
+    margin-top: 1rem;
+    padding-left: 1.2rem;
+}
+
+.now-content li {
+    margin-bottom: 0.6rem;
+}
+
 
         @keyframes gridMove {
             0% { transform: translate(0, 0); }
@@ -249,6 +269,7 @@
             display: inline-block;
             position: relative;
             overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .btn::before {
@@ -274,6 +295,14 @@
             box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
             background: var(--accent-hover);
         }
+
+        .btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
 
         .btn-secondary {
             background: transparent;
@@ -773,6 +802,23 @@
                 grid-template-columns: 1fr;
             }
         }
+        .project-desc {
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+}
+
+.project-why {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.6rem;
+}
+
+.project-learned {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
         .blog-full {
     display: none;
     color: var(--text-secondary);
@@ -783,6 +829,17 @@
 .blog-full p {
     margin-bottom: 1rem;
 }
+.project-card,
+.blog-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover,
+.blog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
     </style>
 </head>
 <body>
@@ -882,47 +939,101 @@
         <div class="container">
             <h2 class="section-title fade-in">Featured Projects</h2>
             <div class="projects-grid">
-                <div class="project-card fade-in">
-                    <h3>Insightify</h3>
-                    <p>Interactive financial forecasting dashboard that predicts quarterly revenue and expenses using time-series models. Features automated ETL pipelines and real-time data visualization.</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">SQL</span>
-                        <span class="tag">scikit-learn</span>
-                        <span class="tag">Streamlit</span>
-                        <span class="tag">Plotly</span>
-                    </div>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
+               <div class="project-card fade-in">
+    <h3>Insightify</h3>
+
+    <p class="project-desc">
+        An interactive dashboard that helps make sense of financial trends through clear, visual forecasting.
+    </p>
+
+    <p class="project-why">
+        I built this because I wanted to understand how financial models behave in real-world conditions, not just clean datasets.
+    </p>
+
+    <p class="project-learned">
+        What I learned: good forecasts mean nothing if people can’t easily understand the story behind them.
+    </p>
+
+    <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">SQL</span>
+        <span class="tag">scikit-learn</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">Plotly</span>
+    </div>
+
+    <a href="#" class="project-link">View Project →</a>
+</div>
+
 
                 <div class="project-card fade-in">
-                    <h3>TaskFlow</h3>
-                    <p>Full-stack task management platform with secure JWT authentication and responsive UI. Built with modern MERN stack and deployed on cloud infrastructure for high availability.</p>
-                    <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">Express</span>
-                        <span class="tag">MongoDB</span>
-                        <span class="tag">JWT</span>
-                    </div>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
+    <h3>TaskFlow</h3>
 
-                <div class="project-card fade-in">
-                    <h3>AutoPost</h3>
-                    <p>Automated social media scheduler with content timing optimization, analytics visualization, and real-time API health monitoring. Features async endpoints and background task processing.</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">FastAPI</span>
-                        <span class="tag">React</span>
-                        <span class="tag">SQLite</span>
-                        <span class="tag">APScheduler</span>
-                    </div>
-                    <a href="#" class="project-link">View Project →</a>
-                </div>
-            </div>
+    <p class="project-desc">
+        A full-stack task management app designed to stay fast, secure, and distraction-free.
+    </p>
+
+    <p class="project-why">
+        I built this after feeling overwhelmed by productivity tools that added complexity instead of reducing it.
+    </p>
+
+    <p class="project-learned">
+        What I learned: reliability and clear UX matter more than packing in extra features.
+    </p>
+
+    <div class="project-tags">
+        <span class="tag">React</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">Express</span>
+        <span class="tag">MongoDB</span>
+        <span class="tag">JWT</span>
+    </div>
+
+    <a href="#" class="project-link">View Project →</a>
+</div>
+
+
+               <div class="project-card fade-in">
+    <h3>AutoPost</h3>
+
+    <p class="project-desc">
+        An automated social media scheduling tool that handles posting, timing, and performance tracking.
+    </p>
+
+    <p class="project-why">
+        I built this to explore how background jobs and async systems work when reliability actually matters.
+    </p>
+
+    <p class="project-learned">
+        What I learned: automation only feels magical when failure cases are handled thoughtfully.
+    </p>
+
+    <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">React</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">APScheduler</span>
+    </div>
+
+    <a href="#" class="project-link">View Project →</a>
+</div>
+ </section>
+
+    <section id="now" class="now-section">
+    <div class="container">
+        <h2 class="section-title fade-in">Now</h2>
+        <div class="now-content fade-in">
+            <p>Right now, I’m:</p>
+            <ul>
+                <li>Building projects that prioritize clarity over complexity</li>
+                <li>Learning how real systems break—and how to design them better</li>
+                <li>Trying to ship consistently instead of chasing perfection</li>
+            </ul>
         </div>
-    </section>
+    </div>
+</section>
+
 
    <section id="blog" class="blog">
     <div class="container">
