@@ -802,6 +802,35 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .now-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 900px;
+    margin: auto;
+}
+
+.now-photo img {
+    width: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    .now-layout {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .now-photo {
+        max-width: 200px;
+        margin: 0 auto;
+    }
+}
+
         .project-desc {
     font-weight: 500;
     margin-bottom: 0.6rem;
@@ -951,7 +980,7 @@
     </p>
 
     <p class="project-learned">
-        What I learned: good forecasts mean nothing if people can’t easily understand the story behind them.
+       Focus: making complex financial data easy to explore and understand.
     </p>
 
     <div class="project-tags">
@@ -978,7 +1007,7 @@
     </p>
 
     <p class="project-learned">
-        What I learned: reliability and clear UX matter more than packing in extra features.
+        Focus: building systems that stay reliable and simple as they grow.
     </p>
 
     <div class="project-tags">
@@ -1005,7 +1034,7 @@
     </p>
 
     <p class="project-learned">
-        What I learned: automation only feels magical when failure cases are handled thoughtfully.
+        Focus: designing background automation that remains predictable and resilient.
     </p>
 
     <div class="project-tags">
@@ -1020,16 +1049,25 @@
 </div>
  </section>
 
-    <section id="now" class="now-section">
+   <section id="now" class="now-section">
     <div class="container">
         <h2 class="section-title fade-in">Now</h2>
-        <div class="now-content fade-in">
-            <p>Right now, I’m:</p>
-            <ul>
-                <li>Building projects that prioritize clarity over complexity</li>
-                <li>Learning how real systems break—and how to design them better</li>
-                <li>Trying to ship consistently instead of chasing perfection</li>
-            </ul>
+
+        <div class="now-layout fade-in">
+          
+            <div class="now-photo">
+                <img src="DSC_0958.JPG" alt="Vidit">
+            </div>
+
+           
+            <div class="now-content">
+                <p>Right now, I’m:</p>
+                <ul>
+                    <li>Building projects that prioritize clarity over complexity</li>
+                    <li>Learning how real systems break—and how to design them better</li>
+                    <li>Trying to ship consistently instead of chasing perfection</li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>
